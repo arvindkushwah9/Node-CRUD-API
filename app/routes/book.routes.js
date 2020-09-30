@@ -15,4 +15,6 @@ module.exports = (app) => {
 
     // Delete a book with bookId
     app.delete('/books/:bookId', books.delete);
+    app.get('/export_csv', books.export_csv);
+
 }

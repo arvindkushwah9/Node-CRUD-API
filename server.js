@@ -38,3 +38,4 @@ app.listen(3000, () => {
 
 // Require Notes routes
 require('./app/routes/book.routes.js')(app);
+app.use(express.static('public'))

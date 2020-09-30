@@ -115,3 +115,20 @@ exports.delete = (req, res) => {
         });
     });
 };
+
+exports.export_csv = (req, res) => {
+	Book.find()
+    .then(books => {
+        	const json2csv = require('json2csv').parse;
+
+					var fields = ['title', 'author'];
+					var fieldNames = ['Title', 'Author'];
+					var data = json2csv({ data: books, fields: fields, fieldNames: fieldNames });
+					res.attachment('filename.csv');
+					res.status(200).send(data);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving notes."
+        });
+    });
+}
